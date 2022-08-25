@@ -17,6 +17,6 @@ public class Reload : MonoBehaviour
     IEnumerator WaitAndReload()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
