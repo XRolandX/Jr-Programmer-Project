@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -24,8 +21,7 @@ public class UserControl : MonoBehaviour
     {
         //right click give order to the unit
         var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             var building = hit.collider.GetComponentInParent<Building>();
 
@@ -43,8 +39,7 @@ public class UserControl : MonoBehaviour
     public void HandleAction()
     {
         var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             //the collider could be children of the unit, so we make sure to check in the parent
             var unit = hit.collider.GetComponentInParent<Unit>();
@@ -62,8 +57,8 @@ public class UserControl : MonoBehaviour
 
     private void Update()
     {
-        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        GameCamera.transform.position = GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
+        Vector2 move = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        GameCamera.transform.position = GameCamera.transform.position + PanSpeed * Time.deltaTime * new Vector3(move.y, 0, -move.x);
 
         if (Input.GetMouseButtonDown(0))
         {
