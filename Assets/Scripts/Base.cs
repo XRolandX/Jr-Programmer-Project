@@ -15,4 +15,9 @@ public class Base : Building
     {
         Instance = this;
     }
+
+    //public float XXX()
+    //{
+    //    return 1;
+    //}
 }
